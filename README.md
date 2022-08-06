@@ -2,6 +2,8 @@
 
 Forces Specific Display Mode (Windowed, Fullscreen, Windowed Borderless) and Resolution on Game Launch. 
 
+![](https://user-images.githubusercontent.com/30152047/183247338-9af217fe-8085-46c3-856c-97b4191e4784.png)
+
 # Links
 * **[Nexus Mods](https://www.nexusmods.com/monsterhunterrise/mods/813)**  
 
