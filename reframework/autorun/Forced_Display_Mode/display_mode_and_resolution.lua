@@ -44,7 +44,7 @@ function display_mode_and_resolution.force_display_mode()
 		renderer = sdk.get_native_singleton("via.render.Renderer");
 
 		if renderer == nil then
-			log.info("[Forced Display Mode] No renderer");
+			log.info("[Forced Display Mode and Resolution] No renderer");
 			customization_menu.status = "No renderer";
 			return;
 		end
@@ -53,7 +53,7 @@ function display_mode_and_resolution.force_display_mode()
 	local current_window_mode = get_window_mode:call(renderer);
 
 	if current_window_mode == nil then
-		log.error("[Forced Display Mode] Current Window Mode not found");
+		log.error("[Forced Display Mode and Resolution] Current Window Mode not found");
 		customization_menu.status = "Current Window Mode not found";
 		return;
 	end
@@ -74,7 +74,7 @@ function display_mode_and_resolution.force_resolution()
 		option_manager = sdk.get_managed_singleton("snow.StmOptionManager");
 	
 		if option_manager == nil then
-			log.info("[Forced Display Mode] No Option Manager");
+			log.info("[Forced Display Mode and Resolution] No Option Manager");
 			customization_menu.status = "No Option Manager";
 			return;
 		end
@@ -104,7 +104,7 @@ function display_mode_and_resolution.populate_resolutions()
 		option_manager = sdk.get_managed_singleton("snow.StmOptionManager");
 	
 		if option_manager == nil then
-			log.info("[Forced Display Mode] No Option Manager");
+			log.info("[Forced Display Mode and Resolution] No Option Manager");
 			customization_menu.status = "No Option Manager";
 			return;
 		end
@@ -112,7 +112,7 @@ function display_mode_and_resolution.populate_resolutions()
 
 	local resolution_info_array = get_resolution_infos_method:call(option_manager);
 	if resolution_info_array == nil then
-		log.info("[Forced Display Mode] No Resolution Info Array");
+		log.info("[Forced Display Mode and Resolution] No Resolution Info Array");
 		customization_menu.status = "No Resolution Info Array";
 		return;
 	end

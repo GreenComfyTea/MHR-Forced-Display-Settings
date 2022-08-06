@@ -101,7 +101,7 @@ function native_customization_menu.init_module()
 	end
 
 	if mod_menu == nil then
-		log.info("[Forced Display Mode] No mod_menu_api API package found. You may need to download it or something.");
+		log.info("[Forced Display Mode and Resolution] No mod_menu_api API package found. You may need to download it or something.");
 		return;
 	end
 

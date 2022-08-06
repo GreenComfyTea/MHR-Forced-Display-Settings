@@ -10,9 +10,10 @@ table_helpers.init_module();
 config.init_module();
 
 customization_menu.init_module();
-native_customization_menu.init_module();
 
 display_mode_and_resolution.init_module();
+
+native_customization_menu.init_module();
 
 log.info("[Forced Display Mode] Loaded.");
 
