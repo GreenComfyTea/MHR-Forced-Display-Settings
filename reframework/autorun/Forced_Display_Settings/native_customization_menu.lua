@@ -41,7 +41,7 @@ function native_customization_menu.draw()
 	local aspect_ratio_config_changed = false;
 	local framerate_config_changed = false;
 	local vsync_config_changed = false;
-	local index = false; 
+	local index = 1; 
 
 	mod_menu.Label("Created by: <COL RED>GreenComfyTea</COL>", "",
 		"Donate: <COL RED>https://streamelements.com/greencomfytea/tip</COL>\nBuy me a tea: <COL RED>https://ko-fi.com/greencomfytea</COL>\nSometimes I stream: <COL RED>twitch.tv/greencomfytea</COL>");
