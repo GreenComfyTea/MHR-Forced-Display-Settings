@@ -1,6 +1,6 @@
-# "Forced Display Mode" Mod for Monster Hunter: Rise
+# "Forced Display Settings" Mod for Monster Hunter: Rise
 
-Forces Specific Display Mode (Windowed, Fullscreen, Windowed Borderless) and Resolution on Game Launch. 
+Forces specific display settings (Output Display, Screen Mode (Windowed, Borderless or Fullscreen), Resolution, Display Frequency, Aspect Ratio, Framerate, V-Sync) on the game launch. 
 
 ![](https://user-images.githubusercontent.com/30152047/183247338-9af217fe-8085-46c3-856c-97b4191e4784.png)
 
