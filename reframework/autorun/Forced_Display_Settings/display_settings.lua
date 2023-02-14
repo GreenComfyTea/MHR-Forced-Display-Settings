@@ -71,14 +71,14 @@ local get_value_method = system_array_type_def:get_method("GetValue(System.Int32
 
 -- option_type = snow.StmOptionDef.StmOptionType
 local option_types = {
-	["output_display"] = 24,
-	["window_mode"] = 27,
-	["hdr"] = 28,
-	["resolution"] = 29,
-	["refresh_rate"] = 30,
-	["aspect_ratio"] = 31,
-	["framerate"] = 33,
-	["vsync"] = 34
+	["output_display"] = 25, --24,
+	["window_mode"] = 28, --27,
+	["hdr"] = 29, --28,
+	["resolution"] = 30, --29,
+	["refresh_rate"] = 31, -- 30,
+	["aspect_ratio"] = 32, --31,
+	["framerate"] = 34, --33,
+	["vsync"] = 35 --34
 }
 
 function display_settings.force_output_display()
