@@ -5,6 +5,36 @@ local config;
 local customization_menu;
 local display_settings;
 
+local sdk = sdk;
+local tostring = tostring;
+local pairs = pairs;
+local ipairs = ipairs;
+local tonumber = tonumber;
+local require = require;
+local pcall = pcall;
+local table = table;
+local string = string;
+local Vector3f = Vector3f;
+local d2d = d2d;
+local math = math;
+local json = json;
+local log = log;
+local fs = fs;
+local next = next;
+local type = type;
+local setmetatable = setmetatable;
+local getmetatable = getmetatable;
+local assert = assert;
+local select = select;
+local coroutine = coroutine;
+local utf8 = utf8;
+local re = re;
+local imgui = imgui;
+local draw = draw;
+local Vector2f = Vector2f;
+local reframework = reframework;
+local package = package;
+
 
 local mod_menu_api_package_name = "ModOptionsMenu.ModMenuApi";
 local mod_menu = nil;
@@ -30,6 +60,8 @@ function native_customization_menu.is_module_available(name)
 
 		return false;
 	end
+
+	
 end
 
 function native_customization_menu.draw()
