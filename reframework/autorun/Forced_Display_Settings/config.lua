@@ -101,7 +101,7 @@ function config.init_module()
 
 	config.init();
 	config.load();
-	config.current_config.version = "2.2";
+	config.current_config.version = "2.2.1";
 end
 
 return config;
