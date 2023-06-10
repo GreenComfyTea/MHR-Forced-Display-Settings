@@ -110,8 +110,8 @@
 * **[Nexus Mods](https://www.nexusmods.com/monsterhunterrise/mods/813)**  
 
 # Requirements
-1. [REFramework](https://www.nexusmods.com/monsterhunterrise/mods/26) (v1.3.7 or above);
-2. [Optional] [Custom In-Game Mod Menu API](https://www.nexusmods.com/monsterhunterrise/mods/1292) (v1.7 or above).
+1. [REFramework](https://www.nexusmods.com/monsterhunterrise/mods/26) (v1.503+);
+2. [Optional] [Custom In-Game Mod Menu API](https://www.nexusmods.com/monsterhunterrise/mods/1292) (v1.71+).
 
 # How to install:
 1. Install [REFramework](https://www.nexusmods.com/monsterhunterrise/mods/26);
