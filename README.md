@@ -5,98 +5,109 @@
 
 <p align="center">
 	<a href="https://github.com/greencomfytea/mhr-forced-display-settings/graphs/contributors">
-		<img alt="Contributors" src="https://img.shields.io/github/contributors/greencomfytea/mhr-forced-display-settings" />
+		<img alt="Contributors" src="https://custom-icon-badges.demolab.com/github/contributors/greencomfytea/mhr-forced-display-settings?logo=person-add" />
 	</a>
 	<a href="https://github.com/greencomfytea/mhr-forced-display-settings/issues">
-		<img alt="Issues" src="https://img.shields.io/github/issues/greencomfytea/mhr-forced-display-settings" />
+		<img alt="Issues" src="https://custom-icon-badges.demolab.com/github/issues/greencomfytea/mhr-forced-display-settings?logo=issue-opened" />
 	</a>
 	<a href="https://github.com/greencomfytea/mhr-forced-display-settings/issues">
-		<img alt="Issues Closed" src="https://img.shields.io/github/issues-closed/greencomfytea/mhr-forced-display-settings" />
+		<img alt="Issues Closed" src="https://custom-icon-badges.demolab.com/github/issues-closed/greencomfytea/mhr-forced-display-settings?logo=issue-closed" />
 	</a>
 	<a href="https://github.com/greencomfytea/mhr-forced-display-settings/pulls">
-		<img alt="Pull Requests" src="https://img.shields.io/github/issues-pr/greencomfytea/mhr-forced-display-settings" />
+		<img alt="Pull Requests" src="https://custom-icon-badges.demolab.com/github/issues-pr/greencomfytea/mhr-forced-display-settings?logo=git-pull-request" />
 	</a>
 	<a href="https://github.com/greencomfytea/mhr-forced-display-settings/pulls">
-		<img alt="Pull Requests Closed" src="https://img.shields.io/github/issues-pr-closed/greencomfytea/mhr-forced-display-settings" />
+		<img alt="Pull Requests Closed" src="https://custom-icon-badges.demolab.com/github/issues-pr-closed/greencomfytea/mhr-forced-display-settings?logo=git-pull-request-closed" />
 	</a>
-</p>
-<p align="center">
+	<br>
 	<a href="https://github.com/greencomfytea/mhr-forced-display-settings/blob/main/LICENSE">
-		<img alt="License" src="https://img.shields.io/github/license/greencomfytea/mhr-forced-display-settings" />
+		<img alt="License" src="https://custom-icon-badges.demolab.com/github/license/greencomfytea/mhr-forced-display-settings?logo=law" />
 	</a>
 	<a href="https://github.com/greencomfytea/mhr-forced-display-settings/releases">
-		<img alt="Release Version" src="https://img.shields.io/github/v/release/greencomfytea/mhr-forced-display-settings" />
+		<img alt="Release Version" src="https://custom-icon-badges.demolab.com/github/v/release/greencomfytea/mhr-forced-display-settings?logo=tag" />
 	</a>
 	<a href="https://github.com/greencomfytea/mhr-forced-display-settings/releases">
-		<img alt="Release Date" src="https://img.shields.io/github/release-date/greencomfytea/mhr-forced-display-settings" />
+		<img alt="Release Date" src="https://custom-icon-badges.demolab.com/github/release-date/greencomfytea/mhr-forced-display-settings?logo=clock" />
 	</a>
 	<a href="">
-		<img alt="Platform" src="https://img.shields.io/badge/platform-win%20%7C%20linux%20%7C%20steam%20deck-lightgrey" />
+		<img alt="Platform" src="https://custom-icon-badges.demolab.com/badge/platform-win%20%7C%20linux%20%7C%20steam%20deck-blue?logo=device-desktop" />
 	</a>
 	<a href="">
-		<img alt="Maintenance" src="https://img.shields.io/maintenance/yes/2023" />
+		<img alt="Maintenance" src="https://custom-icon-badges.demolab.com/maintenance/yes/2023?logo=tools" />
 	</a>
-</p>
-<p align="center">
+	<br>
 	<a href="https://www.nexusmods.com/monsterhunterrise/mods/26">
-		<img alt="REFramework Dependency" src="https://img.shields.io/badge/dependency-REFramework%20v1.503%2B-green" />
+		<img alt="REFramework Dependency" src="https://custom-icon-badges.demolab.com/badge/dependency-REFramework%20v1.503%2B-brightgreen?logo=package-dependencies" />
 	</a>
    	<a href="https://www.nexusmods.com/monsterhunterrise/mods/1292">
-		<img alt="In-Game Menu Dependency" src="https://img.shields.io/badge/dependency-Custom%20In--Game%20Mod%20Menu%20API%20v1.71%2B-yellow" />
+		<img alt="In-Game Menu  Dependency" src="https://custom-icon-badges.demolab.com/badge/dependency-Custom%20In--Game%20Mod%20Menu%20API%20v1.71%2B-brightgreen?logo=package-dependencies" />
 	</a>
-</p>
-<p align="center">
+	<br>
+	<br>
 	<a href="">
-		<img alt="Repo Size" src="https://img.shields.io/github/repo-size/greencomfytea/mhr-forced-display-settings" />
+		<img alt="Repo Size" src="https://custom-icon-badges.demolab.com/github/repo-size/greencomfytea/mhr-forced-display-settings?logo=database" />
 	</a>
 	<a href="">
-		<img alt="Goto Counter" src="https://img.shields.io/github/search/greencomfytea/mhr-forced-display-settings/goto" />
+		<img alt="Goto Counter" src="https://custom-icon-badges.demolab.com/github/search/greencomfytea/mhr-forced-display-settings/goto?logo=git-compare" />
 	</a>
 	<a href="https://github.com/sponsors/greencomfytea">
-		<img alt="Sponsors" src="https://img.shields.io/github/sponsors/greencomfytea" />
+		<img alt="Sponsors" src="https://custom-icon-badges.demolab.com/github/sponsors/greencomfytea?logo=heart" />
 	</a>
-	<a href="">
-		<img alt="Watchers" src="https://img.shields.io/github/watchers/greencomfytea/mhr-forced-display-settings" />
+	<a href="https://github.com/GreenComfyTea/mhr-forced-display-settings/watchers">
+		<img alt="Watchers" src="https://custom-icon-badges.demolab.com/github/watchers/greencomfytea/mhr-forced-display-settings?logo=eye" />
 	</a>
 	<a href="https://github.com/greencomfytea/mhr-forced-display-settings/forks">
-		<img alt="Forks" src="https://img.shields.io/github/forks/greencomfytea/mhr-forced-display-settings" />
+		<img alt="Forks" src="https://custom-icon-badges.demolab.com/github/forks/greencomfytea/mhr-forced-display-settings?logo=repo-forked" />
 	</a>
-	<a href="">
-		<img alt="Stars" src="https://img.shields.io/github/stars/greencomfytea/mhr-forced-display-settings" />
+	<a href="https://github.com/greencomfytea/mhr-forced-display-settings/stargazers">
+		<img alt="Stars" src="https://custom-icon-badges.demolab.com/github/stars/greencomfytea/mhr-forced-display-settings?logo=star" />
 	</a>
-</p>
-<p align="center">
+	<a href="https://github.com/greencomfytea/mhr-forced-display-settings/graphs/traffic">
+		<img alt="Hits" src="https://custom-icon-badges.demolab.com/endpoint?url=https://hits.dwyl.com/greencomfytea/mhr-forced-display-settings.json?color=blue&logo=eye" />
+	</a>
+	<br>
 	<a href="https://github.com/greencomfytea/mhr-forced-display-settings/commits/main">
-		<img alt="Last Commit" src="https://img.shields.io/github/last-commit/greencomfytea/mhr-forced-display-settings" />
+		<img alt="Last Commit" src="https://custom-icon-badges.demolab.com/github/last-commit/greencomfytea/mhr-forced-display-settings?logo=git-commit" />
 	</a>
 	<a href="https://github.com/greencomfytea/mhr-forced-display-settings/commits/main">
-		<img alt="Commits Since" src="https://img.shields.io/github/commits-since/greencomfytea/mhr-forced-display-settings/latest" />
+		<img alt="Commits Since" src="https://custom-icon-badges.demolab.com/github/commits-since/greencomfytea/mhr-forced-display-settings/latest?logo=git-commit" />
+	</a>
+	<a href="https://github.com/greencomfytea/mhr-forced-display-settings/commits/main">
+		<img alt="Commits" src="https://custom-icon-badges.demolab.com/github/commit-activity/t/greencomfytea/mhr-forced-display-settings?logo=git-commit" />
+	</a>
+	<br>
+	<a href="https://github.com/greencomfytea/mhr-forced-display-settings/graphs/commit-activity">
+		<img alt="Commit Activity (Year)" src="https://custom-icon-badges.demolab.com/github/commit-activity/y/greencomfytea/mhr-forced-display-settings?logo=pulse" />
 	</a>
 	<a href="https://github.com/greencomfytea/mhr-forced-display-settings/graphs/commit-activity">
-		<img alt="Commit Activity" src="https://img.shields.io/github/commit-activity/t/greencomfytea/mhr-forced-display-settings" />
+		<img alt="Commit Activity (Month)" src="https://custom-icon-badges.demolab.com/github/commit-activity/m/greencomfytea/mhr-forced-display-settings?logo=pulse" />
 	</a>
 	<a href="https://github.com/greencomfytea/mhr-forced-display-settings/graphs/commit-activity">
-		<img alt="Commit Activity (Year)" src="https://img.shields.io/github/commit-activity/y/greencomfytea/mhr-forced-display-settings" />
+		<img alt="Commit Activity (Week)" src="https://custom-icon-badges.demolab.com/github/commit-activity/w/greencomfytea/mhr-forced-display-settings?logo=pulse" />
 	</a>
-	<a href="https://github.com/greencomfytea/mhr-forced-display-settings/graphs/commit-activity">
-		<img alt="Commit Activity (Month)" src="https://img.shields.io/github/commit-activity/m/greencomfytea/mhr-forced-display-settings" />
-	</a>
-	<a href="https://github.com/greencomfytea/mhr-forced-display-settings/graphs/commit-activity">
-		<img alt="Commit Activity (Week)" src="https://img.shields.io/github/commit-activity/w/greencomfytea/mhr-forced-display-settings" />
-	</a>
-</p>
-<p align="center">
+	<br>
+	<br>
 	<a href="https://www.nexusmods.com/monsterhunterrise/mods/813">
-		<img alt="Website" src="https://img.shields.io/website?down_color=red&down_message=down&up_color=green&up_message=up&url=https://www.nexusmods.com/monsterhunterrise/mods/813" />
+		<img alt="Website" src="https://custom-icon-badges.demolab.com/website?down_color=red&down_message=down&up_color=brightgreen&up_message=up&logo=link&url=https://www.nexusmods.com/monsterhunterrise/mods/813" />
 	</a>
 	<a href="https://github.com/greencomfytea?tab=followers">
-		<img alt="Followers" src="https://img.shields.io/github/followers/greencomfytea" />
+		<img alt="Followers" src="https://custom-icon-badges.demolab.com/github/followers/greencomfytea?logo=people" />
 	</a>
 	<a href="https://twitter.com/greencomfytea">
-		<img alt="Twitter" src="https://img.shields.io/twitter/follow/greencomfytea" />
+		<img alt="Twitter" src="https://img.shields.io/twitter/follow/greencomfytea?logo=twitter" />
 	</a>
 	<a href="https://www.twitch.tv/greencomfytea">
-		<img alt="Twitch" src="https://img.shields.io/twitch/status/greencomfytea" />
+		<img alt="Twitch" src="https://img.shields.io/twitch/status/greencomfytea?logo=twitch" />
+	</a>
+	<br>
+	<a href="https://github.com/greencomfytea">
+		<img alt="Author" src="https://custom-icon-badges.demolab.com/badge/author-GreenComfyTea-green?logo=person" />
+	</a>
+	<a href="https://github.com/topics/open-source">
+		<img alt="Open Source" src="https://img.shields.io/badge/open%20source-%20yes-brightgreen?logo=openvpn" />
+	</a>
+	<a href="https://cursey.github.io/reframework-book/index.html#lua-scripting">
+		<img alt="Written in" src="https://custom-icon-badges.demolab.com/badge/written in-lua-000080?logo=terminal" />
 	</a>
 </p>
 
