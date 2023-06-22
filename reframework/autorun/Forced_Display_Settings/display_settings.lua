@@ -1,6 +1,6 @@
-local display_settings = {};
+local this = {};
 
-local table_helpers;
+local utils;
 local config;
 local customization_menu;
 
@@ -33,18 +33,18 @@ local draw = draw;
 local Vector2f = Vector2f;
 local reframework = reframework;
 
-display_settings.display_names = {};
-display_settings.display_ids = {};
+this.display_names = {};
+this.display_ids = {};
 
-display_settings.resolution_names = {};
-display_settings.resolution_indices = {};
+this.resolution_names = {};
+this.resolution_indices = {};
 
-display_settings.refresh_rate_names = {};
-display_settings.refresh_rate_indices = {};
+this.refresh_rate_names = {};
+this.refresh_rate_indices = {};
 
-display_settings.display_modes = { "Windowed Mode", "Borderless Windowed", "Fullscreen" };
-display_settings.aspect_ratios = { "16:9", "21:9" };
-display_settings.framerates = { "30", "60", "90", "120", "144", "165", "240", "Unlimited" };
+this.display_modes = { "Windowed Mode", "Borderless Windowed", "Fullscreen" };
+this.aspect_ratios = { "16:9", "21:9" };
+this.framerates = { "30", "60", "90", "120", "144", "165", "240", "Unlimited" };
 
 local option_manager = nil;
 local save_service = nil;
@@ -109,9 +109,9 @@ local option_types = {
 	["vsync"] = 36
 }
 
-function display_settings.force_output_display()
+function this.force_output_display()
 	if not config.current_config.forced_output_display.enabled then
-		display_settings.init();
+		this.init();
 		return;
 	end
 
@@ -121,7 +121,7 @@ function display_settings.force_output_display()
 		if option_manager == nil then
 			log.info("[Forced Display Settings] No Option Manager");
 			customization_menu.status = "No Option Manager";
-			display_settings.init();
+			this.init();
 			return;
 		end
 	end
@@ -130,7 +130,7 @@ function display_settings.force_output_display()
 	if option_data_container == nil then
 		log.info("[Forced Display Settings] No Option Data Container");
 		customization_menu.status = "No Option Data Container";
-		display_settings.init();
+		this.init();
 		return;
 	end
 
@@ -138,14 +138,14 @@ function display_settings.force_output_display()
 	if current_output_display == nil then
 		log.info("[Forced Display Settings] No Current Output Display");
 		customization_menu.status = "No Current Output Display";
-		display_settings.init();
+		this.init();
 		return;
 	end
 
 	local next_output_display = config.current_config.forced_output_display.display_id;
 
 	if current_output_display == next_output_display then
-		display_settings.init();
+		this.init();
 		return;
 	end
 
@@ -153,11 +153,11 @@ function display_settings.force_output_display()
 	if current_display_mode == nil then
 		log.info("[Forced Display Settings] No Current Display Mode");
 		customization_menu.status = "No Current Display Mode";
-		display_settings.init();
+		this.init();
 		return;
 	end
 
-	local next_display_mode = table_helpers.find_index(display_settings.display_modes, "Windowed Mode");
+	local next_display_mode = utils.table.find_index(this.display_modes, "Windowed Mode");
 	next_display_mode = next_display_mode - 1;
 
 	if current_display_mode == next_display_mode then
@@ -169,17 +169,17 @@ function display_settings.force_output_display()
 		set_option_value_method:call(option_data_container, option_types.output_display, next_output_display);
 		apply_option_value_method:call(option_manager, option_types.output_display);
 
-		display_settings.init();
+		this.init();
 	else
 		output_display_waiting_for_display_mode_change = true;
-		last_window_mode = display_settings.display_modes[current_display_mode + 1];
+		last_window_mode = this.display_modes[current_display_mode + 1];
 		
 		set_option_value_method:call(option_data_container, option_types.window_mode, next_display_mode);
 		apply_option_value_method:call(option_manager, option_types.window_mode);
 	end
 end
 
-function display_settings.force_display_mode()
+function this.force_display_mode()
 	if not config.current_config.forced_display_mode.enabled then
 		return;
 	end
@@ -208,7 +208,7 @@ function display_settings.force_display_mode()
 		return;
 	end
 
-	local next_display_mode = table_helpers.find_index(display_settings.display_modes, config.current_config.forced_display_mode.display_mode, true);
+	local next_display_mode = utils.table.find_index(this.display_modes, config.current_config.forced_display_mode.display_mode, true);
 	if next_display_mode == nil then 
 		return;
 	end
@@ -223,7 +223,7 @@ function display_settings.force_display_mode()
 	apply_option_value_method:call(option_manager, option_types.window_mode);
 end
 
-function display_settings.force_resolution()
+function this.force_resolution()
 	if not config.current_config.forced_resolution.enabled then
 		return;
 	end
@@ -252,12 +252,12 @@ function display_settings.force_resolution()
 		return;
 	end
 
-	local script_resolution_index = table_helpers.find_index(display_settings.resolution_names, config.current_config.forced_resolution.resolution, true);
+	local script_resolution_index = utils.table.find_index(this.resolution_names, config.current_config.forced_resolution.resolution, true);
 	if script_resolution_index == nil then
 		return;
 	end
 
-	local in_game_resolution_index = display_settings.resolution_indices[script_resolution_index];
+	local in_game_resolution_index = this.resolution_indices[script_resolution_index];
 	if in_game_resolution_index == nil then
 		return;
 	end
@@ -270,7 +270,7 @@ function display_settings.force_resolution()
 	apply_option_value_method:call(option_manager, option_types.resolution);
 end
 
-function display_settings.force_refresh_rate()
+function this.force_refresh_rate()
 	if not config.current_config.forced_refresh_rate.enabled then
 		return;
 	end
@@ -299,12 +299,12 @@ function display_settings.force_refresh_rate()
 		return;
 	end
 
-	local script_refresh_rate_index = table_helpers.find_index(display_settings.refresh_rate_names, config.current_config.forced_refresh_rate.refresh_rate, true);
+	local script_refresh_rate_index = utils.table.find_index(this.refresh_rate_names, config.current_config.forced_refresh_rate.refresh_rate, true);
 	if script_refresh_rate_index == nil then
 		return;
 	end
 
-	local in_game_refresh_rate_index = display_settings.refresh_rate_indices[script_refresh_rate_index];
+	local in_game_refresh_rate_index = this.refresh_rate_indices[script_refresh_rate_index];
 	if in_game_refresh_rate_index == nil then
 		return;
 	end
@@ -317,7 +317,7 @@ function display_settings.force_refresh_rate()
 	apply_option_value_method:call(option_manager, option_types.refresh_rate);
 end
 
-function display_settings.force_aspect_ratio()
+function this.force_aspect_ratio()
 	if not config.current_config.forced_aspect_ratio.enabled then
 		return;
 	end
@@ -346,7 +346,7 @@ function display_settings.force_aspect_ratio()
 		return;
 	end
 
-	local next_aspect_ratio = table_helpers.find_index(display_settings.aspect_ratios, config.current_config.forced_aspect_ratio.aspect_ratio);
+	local next_aspect_ratio = utils.table.find_index(this.aspect_ratios, config.current_config.forced_aspect_ratio.aspect_ratio);
 	next_aspect_ratio = next_aspect_ratio - 1;
 
 	if current_aspect_ratio == next_aspect_ratio then
@@ -357,7 +357,7 @@ function display_settings.force_aspect_ratio()
 	apply_option_value_method:call(option_manager, option_types.aspect_ratio);
 end
 
-function display_settings.force_framerate()
+function this.force_framerate()
 	if not config.current_config.forced_framerate.enabled then
 		return;
 	end
@@ -386,7 +386,7 @@ function display_settings.force_framerate()
 		return;
 	end
 
-	local next_framerate = table_helpers.find_index(display_settings.framerates, config.current_config.forced_framerate.framerate, true);
+	local next_framerate = utils.table.find_index(this.framerates, config.current_config.forced_framerate.framerate, true);
 	if next_framerate == nil then
 		return;
 	end
@@ -401,7 +401,7 @@ function display_settings.force_framerate()
 	apply_option_value_method:call(option_manager, option_types.framerate);
 end
 
-function display_settings.force_vsync()
+function this.force_vsync()
 	if not config.current_config.forced_vsync.enabled then
 		return;
 	end
@@ -443,7 +443,7 @@ function display_settings.force_vsync()
 	apply_option_value_method:call(option_manager, option_types.vsync);
 end
 
-function display_settings.save()
+function this.save()
 	if save_service == nil then
 		save_service = sdk.get_managed_singleton("snow.SnowSaveService");
 	
@@ -457,7 +457,7 @@ function display_settings.save()
 	save_system_data_method:call(save_service);
 end
 
-function display_settings.populate_resolutions()
+function this.populate_resolutions()
 	if option_manager == nil then
 		option_manager = sdk.get_managed_singleton("snow.StmOptionManager");
 	
@@ -505,11 +505,11 @@ function display_settings.populate_resolutions()
 		::continue::
 	end
 
-	display_settings.resolution_indices = resolution_indices;
-	display_settings.resolution_names = resolution_names;
+	this.resolution_indices = resolution_indices;
+	this.resolution_names = resolution_names;
 end
 
-function display_settings.populate_refresh_rates()
+function this.populate_refresh_rates()
 	if option_manager == nil then
 		option_manager = sdk.get_managed_singleton("snow.StmOptionManager");
 	
@@ -557,11 +557,11 @@ function display_settings.populate_refresh_rates()
 		::continue::
 	end
 
-	display_settings.refresh_rate_indices = refresh_rate_indices;
-	display_settings.refresh_rate_names = refresh_rate_names;
+	this.refresh_rate_indices = refresh_rate_indices;
+	this.refresh_rate_names = refresh_rate_names;
 end
 
-function display_settings.populate_output_displays()
+function this.populate_output_displays()
 	if option_manager == nil then
 		option_manager = sdk.get_managed_singleton("snow.StmOptionManager");
 	
@@ -613,13 +613,13 @@ function display_settings.populate_output_displays()
 		::continue::
 	end
 
-	display_settings.display_ids = display_ids;
-	display_settings.display_names = display_names;
+	this.display_ids = display_ids;
+	this.display_names = display_names;
 end
 
-function display_settings.on_display_setting_changed()
-	display_settings.populate_resolutions();
-	display_settings.populate_refresh_rates();
+function this.on_display_setting_changed()
+	this.populate_resolutions();
+	this.populate_refresh_rates();
 
 	if not display_mode_waiting_for_output_display_change then
 		return;
@@ -633,7 +633,7 @@ function display_settings.on_display_setting_changed()
 		if option_manager == nil then
 			log.info("[Forced Display Settings] No Option Manager");
 			customization_menu.status = "No Option Manager";
-			display_settings.init();
+			this.init();
 			return;
 		end
 	end
@@ -642,13 +642,13 @@ function display_settings.on_display_setting_changed()
 	if option_data_container == nil then
 		log.info("[Forced Display Settings] No Option Data Container");
 		customization_menu.status = "No Option Data Container";
-		display_settings.init();
+		this.init();
 		return;
 	end
 
-	local next_display_mode = table_helpers.find_index(display_settings.display_modes, last_window_mode, true);
+	local next_display_mode = utils.table.find_index(this.display_modes, last_window_mode, true);
 	if next_display_mode == nil then 
-		display_settings.init();
+		this.init();
 		return;
 	end
 	
@@ -657,10 +657,10 @@ function display_settings.on_display_setting_changed()
 	set_option_value_method:call(option_data_container, option_types.window_mode, next_display_mode);
 	apply_option_value_method:call(option_manager, option_types.window_mode);
 
-	display_settings.init()
+	this.init()
 end
 
-function display_settings.on_window_mode_changed()
+function this.on_window_mode_changed()
 	if not output_display_waiting_for_display_mode_change then
 		return;
 	end
@@ -673,7 +673,7 @@ function display_settings.on_window_mode_changed()
 		if option_manager == nil then
 			log.info("[Forced Display Settings] No Option Manager");
 			customization_menu.status = "No Option Manager";
-			display_settings.init();
+			this.init();
 			return;
 		end
 	end
@@ -682,7 +682,7 @@ function display_settings.on_window_mode_changed()
 	if option_data_container == nil then
 		log.info("[Forced Display Settings] No Option Data Container");
 		customization_menu.status = "No Option Data Container";
-		display_settings.init();
+		this.init();
 		return;
 	end
 
@@ -694,31 +694,31 @@ function display_settings.on_window_mode_changed()
 	apply_option_value_method:call(option_manager, option_types.output_display);
 end
 
-function display_settings.init()
+function this.init()
 	if force_on_init then
 		force_on_init = false;
 
-		display_settings.populate_resolutions();
-		display_settings.populate_refresh_rates();
+		this.populate_resolutions();
+		this.populate_refresh_rates();
 
-		display_settings.force_display_mode();
-		display_settings.force_resolution();
-		display_settings.force_refresh_rate();
-		display_settings.force_aspect_ratio();
-		display_settings.force_framerate();
-		display_settings.force_vsync();
+		this.force_display_mode();
+		this.force_resolution();
+		this.force_refresh_rate();
+		this.force_aspect_ratio();
+		this.force_framerate();
+		this.force_vsync();
 	end
 end
 
-function display_settings.init_module()
+function this.init_module()
 	config = require("Forced_Display_Settings.config");
-	table_helpers = require("Forced_Display_Settings.table_helpers");
+	utils = require("Forced_Display_Settings.utils");
 	customization_menu = require("Forced_Display_Settings.customization_menu");
 
 	sdk.hook(on_display_setting_changed_method,
 		function(args) end,
 		function(retval)
-			display_settings.on_display_setting_changed();
+			this.on_display_setting_changed();
 			return retval;
 		end
 	);
@@ -727,7 +727,7 @@ function display_settings.init_module()
 		on_window_mode_changed_method,
 		function(args) end,
 		function(retval)
-			display_settings.on_window_mode_changed();
+			this.on_window_mode_changed();
 			return retval;
 		end
 	);
@@ -738,15 +738,15 @@ function display_settings.init_module()
 		sdk.hook(option_manager_start_method,
 			function(args) end,
 			function(retval)
-				display_settings.populate_output_displays();
-				display_settings.force_output_display();
+				this.populate_output_displays();
+				this.force_output_display();
 				return retval;
 			end	
 		);
 	else
-		display_settings.populate_output_displays();
-		display_settings.force_output_display();
+		this.populate_output_displays();
+		this.force_output_display();
 	end
 end
 
-return display_settings;
+return this;

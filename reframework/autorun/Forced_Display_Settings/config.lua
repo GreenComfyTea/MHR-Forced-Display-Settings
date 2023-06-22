@@ -1,6 +1,6 @@
-local config = {};
+local this = {};
 
-local table_helpers;
+local utils;
 
 local sdk = sdk;
 local tostring = tostring;
@@ -31,13 +31,13 @@ local draw = draw;
 local Vector2f = Vector2f;
 local reframework = reframework;
 
-config.current_config = nil;
-config.config_file_name = "Forced Display Settings/config.json";
+this.current_config = nil;
+this.config_file_name = "Forced Display Settings/config.json";
 
-config.default_config = {};
+this.default_config = {};
 
-function config.init()
-	config.default_config = {
+function this.init()
+	this.default_config = {
 		forced_output_display = {
 			enabled = false,
 			display_id = 0
@@ -75,20 +75,20 @@ function config.init()
 	};
 end
 
-function config.load()
-	local loaded_config = json.load_file(config.config_file_name);
+function this.load()
+	local loaded_config = json.load_file(this.config_file_name);
 	if loaded_config ~= nil then
 		log.info("[Forced Display Settings] config.json loaded successfully");
-		config.current_config = table_helpers.merge(config.default_config, loaded_config);
+		this.current_config = utils.table.merge(this.default_config, loaded_config);
 	else
 		log.error("[Forced Display Settings] Failed to load config.json");
-		config.current_config = table_helpers.deep_copy(config.default_config);
+		this.current_config = utils.table.deep_copy(this.default_config);
 	end
 end
 
-function config.save()
+function this.save()
 	-- save current config to disk, replacing any existing file
-	local success = json.dump_file(config.config_file_name, config.current_config);
+	local success = json.dump_file(this.config_file_name, this.current_config);
 	if success then
 		log.info("[Forced Display Settings] config.json saved successfully");
 	else
@@ -96,12 +96,12 @@ function config.save()
 	end
 end
 
-function config.init_module()
-	table_helpers = require("Forced_Display_Settings.table_helpers");
+function this.init_module()
+	utils = require("Forced_Display_Settings.utils");
 
-	config.init();
-	config.load();
-	config.current_config.version = "2.4";
+	this.init();
+	this.load();
+	this.current_config.version = "2.4";
 end
 
-return config;
+return this;

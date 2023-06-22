@@ -1,6 +1,6 @@
-local customization_menu = {};
+local this = {};
 
-local table_helpers;
+local utils;
 local config;
 local display_settings;
 
@@ -33,33 +33,33 @@ local draw = draw;
 local Vector2f = Vector2f;
 local reframework = reframework;
 
-customization_menu.is_opened = false;
-customization_menu.status = "OK";
+this.is_opened = false;
+this.status = "OK";
 
-customization_menu.window_position = Vector2f.new(480, 200);
-customization_menu.window_pivot = Vector2f.new(0, 0);
-customization_menu.window_size = Vector2f.new(500, 550);
-customization_menu.window_flags = 0x10120;
+this.window_position = Vector2f.new(480, 200);
+this.window_pivot = Vector2f.new(0, 0);
+this.window_size = Vector2f.new(500, 550);
+this.window_flags = 0x10120;
 
-customization_menu.color_picker_flags = 327680;
-customization_menu.decimal_input_flags = 33;
+this.color_picker_flags = 327680;
+this.decimal_input_flags = 33;
 
-function customization_menu.init()
+function this.init()
 end
 
-function customization_menu.draw()
-	imgui.set_next_window_pos(customization_menu.window_position, 1 << 3, customization_menu.window_pivot);
-	imgui.set_next_window_size(customization_menu.window_size, 1 << 3);
+function this.draw()
+	imgui.set_next_window_pos(this.window_position, 1 << 3, this.window_pivot);
+	imgui.set_next_window_size(this.window_size, 1 << 3);
 
-	customization_menu.is_opened = imgui.begin_window(
-		"Forced Display Settings v" .. config.current_config.version, customization_menu.is_opened, customization_menu.window_flags);
+	this.is_opened = imgui.begin_window(
+		"Forced Display Settings v" .. config.current_config.version, this.is_opened, this.window_flags);
 
-	if not customization_menu.is_opened then
+	if not this.is_opened then
 		imgui.end_window();
 		return;
 	end
 
-	imgui.text("Status: " .. tostring(customization_menu.status));
+	imgui.text("Status: " .. tostring(this.status));
 
 	local changed = false;
 	local output_display_config_changed = false;
@@ -89,7 +89,7 @@ function customization_menu.draw()
 		changed, config.current_config.forced_display_mode.enabled = imgui.checkbox("Enabled", config.current_config.forced_display_mode.enabled);
 		display_mode_config_changed = display_mode_config_changed or changed;
 
-		changed, index = imgui.combo("Screen Mode", table_helpers.find_index(display_settings.display_modes, config.current_config.forced_display_mode.display_mode), display_settings.display_modes);
+		changed, index = imgui.combo("Screen Mode", utils.table.find_index(display_settings.display_modes, config.current_config.forced_display_mode.display_mode), display_settings.display_modes);
 		display_mode_config_changed = display_mode_config_changed or changed;
 
 		if changed then
@@ -103,7 +103,7 @@ function customization_menu.draw()
 		changed, config.current_config.forced_resolution.enabled = imgui.checkbox("Enabled", config.current_config.forced_resolution.enabled);
 		resolution_config_changed = resolution_config_changed or changed;
 
-		changed, index = imgui.combo("Resolution", table_helpers.find_index(display_settings.resolution_names, config.current_config.forced_resolution.resolution), display_settings.resolution_names);
+		changed, index = imgui.combo("Resolution", utils.table.find_index(display_settings.resolution_names, config.current_config.forced_resolution.resolution), display_settings.resolution_names);
 		resolution_config_changed = resolution_config_changed or changed;
 
 		if changed then
@@ -117,7 +117,7 @@ function customization_menu.draw()
 		changed, config.current_config.forced_refresh_rate.enabled = imgui.checkbox("Enabled", config.current_config.forced_refresh_rate.enabled);
 		refresh_rate_config_changed = refresh_rate_config_changed or changed;
 
-		changed, index = imgui.combo("Display Frequency", table_helpers.find_index(display_settings.refresh_rate_names, config.current_config.forced_refresh_rate.refresh_rate), display_settings.refresh_rate_names);
+		changed, index = imgui.combo("Display Frequency", utils.table.find_index(display_settings.refresh_rate_names, config.current_config.forced_refresh_rate.refresh_rate), display_settings.refresh_rate_names);
 		refresh_rate_config_changed = refresh_rate_config_changed or changed;
 
 		if changed then
@@ -131,7 +131,7 @@ function customization_menu.draw()
 		changed, config.current_config.forced_aspect_ratio.enabled = imgui.checkbox("Enabled", config.current_config.forced_aspect_ratio.enabled);
 		aspect_ratio_config_changed = aspect_ratio_config_changed or changed;
 
-		changed, index = imgui.combo("Aspect Ratio", table_helpers.find_index(display_settings.aspect_ratios, config.current_config.forced_aspect_ratio.aspect_ratio), display_settings.aspect_ratios);
+		changed, index = imgui.combo("Aspect Ratio", utils.table.find_index(display_settings.aspect_ratios, config.current_config.forced_aspect_ratio.aspect_ratio), display_settings.aspect_ratios);
 		aspect_ratio_config_changed = aspect_ratio_config_changed or changed;
 
 		if changed then
@@ -145,7 +145,7 @@ function customization_menu.draw()
 		changed, config.current_config.forced_framerate.enabled = imgui.checkbox("Enabled", config.current_config.forced_framerate.enabled);
 		framerate_config_changed = framerate_config_changed or changed;
 
-		changed, index = imgui.combo("Framerate Cap", table_helpers.find_index(display_settings.framerates, config.current_config.forced_framerate.framerate), display_settings.framerates);
+		changed, index = imgui.combo("Framerate Cap", utils.table.find_index(display_settings.framerates, config.current_config.forced_framerate.framerate), display_settings.framerates);
 		framerate_config_changed = framerate_config_changed or changed;
 
 		if changed then
@@ -206,12 +206,12 @@ function customization_menu.draw()
 	end
 end
 
-function customization_menu.init_module()
-	table_helpers = require("Forced_Display_Settings.table_helpers");
+function this.init_module()
+	utils = require("Forced_Display_Settings.utils");
 	config = require("Forced_Display_Settings.config");
 	display_settings = require("Forced_Display_Settings.display_settings");
 
-	customization_menu.init();
+	this.init();
 end
 
-return customization_menu;
+return this;

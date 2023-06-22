@@ -27,7 +27,7 @@ local draw = draw;
 local Vector2f = Vector2f;
 local reframework = reframework;
 
-local table_helpers = require("Forced_Display_Settings.table_helpers");
+local utils = require("Forced_Display_Settings.utils");
 local config = require("Forced_Display_Settings.config");
 
 local customization_menu = require("Forced_Display_Settings.customization_menu");
@@ -35,7 +35,7 @@ local native_customization_menu = require("Forced_Display_Settings.native_custom
 
 local display_settings = require("Forced_Display_Settings.display_settings");
 
-table_helpers.init_module();
+utils.init_module();
 config.init_module();
 
 customization_menu.init_module();

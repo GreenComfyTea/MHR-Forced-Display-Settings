@@ -1,6 +1,6 @@
-local native_customization_menu = {};
+local this = {};
 
-local table_helpers;
+local utils;
 local config;
 local customization_menu;
 local display_settings;
@@ -41,11 +41,11 @@ local mod_menu = nil;
 
 local native_UI = nil;
 
-native_customization_menu.display_mode_descriptions = { "Windowed Mode.", "Borderless Windowed Mode.", "Fullscreen Mode." };
+this.display_mode_descriptions = { "Windowed Mode.", "Borderless Windowed Mode.", "Fullscreen Mode." };
 
 --no idea how this works but google to the rescue
 --can use this to check if the api is available and do an alternative to avoid complaints from users
-function native_customization_menu.is_module_available(name)
+function this.is_module_available(name)
 	if package.loaded[name] then
 		return true;
 	else
@@ -64,7 +64,7 @@ function native_customization_menu.is_module_available(name)
 	
 end
 
-function native_customization_menu.draw()
+function this.draw()
 	local changed = false;
 	local output_display_config_changed = false;
 	local display_mode_config_changed = false;
@@ -91,7 +91,7 @@ function native_customization_menu.draw()
 			"Output Display Settings",
 			config.current_config.forced_output_display.display_id + 1,
 			display_settings.display_names,
-			native_customization_menu.display_mode_descriptions,
+			this.display_mode_descriptions,
 			"Select a display that will show the game screen.\n<COL YEL>(Only configurable for Windows 10 or later,\nand only for multiple-display environments.)</COL>"
 		);
 		output_display_config_changed = output_display_config_changed or changed;
@@ -110,9 +110,9 @@ function native_customization_menu.draw()
 
 		changed, index = mod_menu.Options(
 			"Screen Mode",
-			table_helpers.find_index(display_settings.display_modes, config.current_config.forced_display_mode.display_mode),
+			utils.table.find_index(display_settings.display_modes, config.current_config.forced_display_mode.display_mode),
 			display_settings.display_modes,
-			native_customization_menu.display_mode_descriptions,
+			this.display_mode_descriptions,
 			"Configure screen mode."
 		);
 		display_mode_config_changed = display_mode_config_changed or changed;
@@ -131,7 +131,7 @@ function native_customization_menu.draw()
 
 		changed, index = mod_menu.Options(
 			"Resolution Settings",
-			table_helpers.find_index(display_settings.resolution_names, config.current_config.forced_resolution.resolution),
+			utils.table.find_index(display_settings.resolution_names, config.current_config.forced_resolution.resolution),
 			display_settings.resolution_names,
 			display_settings.resolution_names,
 			"Change screen resolution."
@@ -152,7 +152,7 @@ function native_customization_menu.draw()
 
 		changed, index = mod_menu.Options(
 			"Display Frequency",
-			table_helpers.find_index(display_settings.refresh_rate_names, config.current_config.forced_refresh_rate.refresh_rate),
+			utils.table.find_index(display_settings.refresh_rate_names, config.current_config.forced_refresh_rate.refresh_rate),
 			display_settings.refresh_rate_names,
 			display_settings.refresh_rate_names,
 			"Change display frequency."
@@ -173,7 +173,7 @@ function native_customization_menu.draw()
 
 		changed, index = mod_menu.Options(
 			"Aspect Ratio",
-			table_helpers.find_index(display_settings.aspect_ratios, config.current_config.forced_aspect_ratio.aspect_ratio),
+			utils.table.find_index(display_settings.aspect_ratios, config.current_config.forced_aspect_ratio.aspect_ratio),
 			display_settings.aspect_ratios,
 			display_settings.aspect_ratios,
 			"Configure aspect ratio. Defaults to letterbox\nfor monitors other than ultra-wide monitors."
@@ -194,7 +194,7 @@ function native_customization_menu.draw()
 
 		changed, index = mod_menu.Options(
 			"Framerate Cap",
-			table_helpers.find_index(display_settings.framerates, config.current_config.forced_framerate.framerate),
+			utils.table.find_index(display_settings.framerates, config.current_config.forced_framerate.framerate),
 			display_settings.framerates,
 			display_settings.framerates,
 			"Set a framerate cap."
@@ -257,17 +257,17 @@ function native_customization_menu.draw()
 	end
 end
 
-function native_customization_menu.on_reset_all_settings()
-	config.current_config = table_helpers.deep_copy(config.default_config);
+function this.on_reset_all_settings()
+	config.current_config = utils.table.deep_copy(config.default_config);
 end
 
-function native_customization_menu.init_module()
-	table_helpers = require("Forced_Display_Settings.table_helpers");
+function this.init_module()
+	utils = require("Forced_Display_Settings.utils");
 	config = require("Forced_Display_Settings.config");
 	customization_menu = require("Forced_Display_Settings.customization_menu");
 	display_settings = require("Forced_Display_Settings.display_settings");
 
-	if native_customization_menu.is_module_available(mod_menu_api_package_name) then
+	if this.is_module_available(mod_menu_api_package_name) then
 		mod_menu = require(mod_menu_api_package_name);
 	end
 
@@ -279,11 +279,11 @@ function native_customization_menu.init_module()
 	native_UI = mod_menu.OnMenu(
 		"Forced Display Settings",
 		"Force Display Mode on Game Launch.",
-		native_customization_menu.draw
+		this.draw
 	);
 
-	native_UI.OnResetAllSettings = native_customization_menu.on_reset_all_settings;
+	native_UI.OnResetAllSettings = this.on_reset_all_settings;
 
 end
 
-return native_customization_menu;
+return this;
