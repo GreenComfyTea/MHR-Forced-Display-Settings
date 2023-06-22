@@ -62,14 +62,13 @@ local get_resolution_infos_method = option_manager_type_def:get_method("getResol
 local get_refresh_rate_infos_method = option_manager_type_def:get_method("getRefreshRateInfos");
 local get_display_infos_method = option_manager_type_def:get_method("getDisplayInfos");
 local option_manager_start_method = option_manager_type_def:get_method("start");
-
 local get_option_data_container_method = option_manager_type_def:get_method("get_StmOptionDataContainer");
 
 local on_display_setting_changed_method = option_manager_type_def:get_method("onDisplaySettingChanged");
 local set_and_apply_max_resolution_and_refresh_rate_method = option_manager_type_def:get_method("setAndApplyMaxResolutionAndRefreshRate");
 local on_window_mode_changed_method = option_manager_type_def:get_method("onWindowModeChangeEvent");
 
-local option_data_container_type_def = sdk.find_type_definition("snow.StmOptionDataContainer");
+local option_data_container_type_def = get_option_data_container_method:get_return_type();
 local set_option_value_method = option_data_container_type_def:get_method("setOptionValue");
 local get_output_display_option_method = option_data_container_type_def:get_method("getOutputDisplayOption");
 local get_window_mode_option_method = option_data_container_type_def:get_method("getWindowModeOption");
@@ -98,17 +97,16 @@ local system_array_type_def = sdk.find_type_definition("System.Array");
 local length_method = system_array_type_def:get_method("get_Length");
 local get_value_method = system_array_type_def:get_method("GetValue(System.Int32)");
 
-
 -- option_type = snow.StmOptionDef.StmOptionType
 local option_types = {
-	["output_display"] = 25, --24,
-	["window_mode"] = 28, --27,
-	["hdr"] = 29, --28,
-	["resolution"] = 30, --29,
-	["refresh_rate"] = 31, -- 30,
-	["aspect_ratio"] = 32, --31,
-	["framerate"] = 34, --33,
-	["vsync"] = 35 --34
+	["output_display"] = 26,
+	["window_mode"] = 29,
+	["hdr"] = 30,
+	["resolution"] = 31,
+	["refresh_rate"] = 32,
+	["aspect_ratio"] = 33,
+	["framerate"] = 35,
+	["vsync"] = 36
 }
 
 function display_settings.force_output_display()
@@ -170,18 +168,15 @@ function display_settings.force_output_display()
 
 		set_option_value_method:call(option_data_container, option_types.output_display, next_output_display);
 		apply_option_value_method:call(option_manager, option_types.output_display);
+
+		display_settings.init();
 	else
 		output_display_waiting_for_display_mode_change = true;
 		last_window_mode = display_settings.display_modes[current_display_mode + 1];
 		
-
 		set_option_value_method:call(option_data_container, option_types.window_mode, next_display_mode);
 		apply_option_value_method:call(option_manager, option_types.window_mode);
-
-		return;
 	end
-
-	display_settings.init();
 end
 
 function display_settings.force_display_mode()
@@ -597,23 +592,24 @@ function display_settings.populate_output_displays()
 	for i = 0, display_info_array_length - 1 do
 		local display_info = get_value_method:call(display_info_array, i);
 		if display_info == nil then
-			goto continue
+			goto continue;
 		end
 		
 		local display_index = display_id_field:get_data(display_info);
 		local display_name = display_name_field:get_data(display_info)
 
-		if display_index ~= nil then
-			table.insert(display_ids, display_index);
+		if display_index == nil or display_name == nil then
+			goto continue;
 		end
 
-		if display_name ~= nil then
-			if display_name == "" then
-				table.insert(display_names, "DISPLAY " .. tostring(display_index + 1));
-			end
+		table.insert(display_ids, display_index);
+
+		if display_name == "" then
+			table.insert(display_names, "DISPLAY " .. tostring(display_index + 1));
+		else
 			table.insert(display_names, display_name);
 		end
-
+		
 		::continue::
 	end
 
@@ -719,24 +715,34 @@ function display_settings.init_module()
 	table_helpers = require("Forced_Display_Settings.table_helpers");
 	customization_menu = require("Forced_Display_Settings.customization_menu");
 
-	sdk.hook(on_display_setting_changed_method, function(args) end, function(retval)
-		display_settings.on_display_setting_changed();
-		return retval;
-	end);
+	sdk.hook(on_display_setting_changed_method,
+		function(args) end,
+		function(retval)
+			display_settings.on_display_setting_changed();
+			return retval;
+		end
+	);
 
-	sdk.hook(on_window_mode_changed_method, function(args) end, function(retval)
-		display_settings.on_window_mode_changed();
-		return retval;
-	end);
+	sdk.hook(
+		on_window_mode_changed_method,
+		function(args) end,
+		function(retval)
+			display_settings.on_window_mode_changed();
+			return retval;
+		end
+	);
 
 	option_manager = sdk.get_managed_singleton("snow.StmOptionManager");
 
 	if option_manager == nil then
-		sdk.hook(option_manager_start_method, function(args) end, function(retval)
-			display_settings.populate_output_displays();
-			display_settings.force_output_display();
-			return retval;
-		end);
+		sdk.hook(option_manager_start_method,
+			function(args) end,
+			function(retval)
+				display_settings.populate_output_displays();
+				display_settings.force_output_display();
+				return retval;
+			end	
+		);
 	else
 		display_settings.populate_output_displays();
 		display_settings.force_output_display();
